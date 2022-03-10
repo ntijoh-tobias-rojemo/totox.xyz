@@ -1,0 +1,71 @@
+* {
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Eczar', serif;
+  padding: 0.5rem;
+}
+
+p, li, td {
+  font-family: 'Exo', sans-serif;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+}
+
+li {
+  position: relative;
+  left: 2rem;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.5rem
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.desktop-page-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100vh;
+  min-height: 100vh;
+  height: auto;
+  background-color: rgba(255, 0, 225, 0.7);
+  z-index: -1;
+}
+
+#desktop-bg {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;  
+  z-index: -2;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}

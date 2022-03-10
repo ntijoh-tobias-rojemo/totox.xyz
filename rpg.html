@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta property="og:title" content="RPG">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://totox.xyz/img/embed.png">
+  <meta property="og:url" content="https://rpg.totox.xyz">
+  <meta property="og:description" content="A simple website about me and my projects.">
+  <meta property="og:site_name" content="totox.xyz">
+
+  <script src="js/common.js" type="module"></script>
+  <script src="js/rpg.js" type="module"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@700&family=Exo:wght@300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/common.css" />
+  <link rel="stylesheet" type="text/css" href="css/rpg.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RPG</title>
+</head>
+
+<body>
+  <div class="desktop-page-wrapper">
+    <main>
+      <h1>The First World</h1>
+      <section id="rules" hidden>
+        <h2 id="rules-hd">Rules</h2>
+        <article id="core-rules">
+          <h3 id="core-rules-hd">Core rules</h3>
+          <h4>Base attributes</h4>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Short</td>
+              <td>Description</td>
+            </tr>
+            <tr>
+              <td>Strength</td>
+              <td>STR</td>
+              <td>A creature's physical strength</td>
+            </tr>
+            <tr>
+              <td>Dexterity</td>
+              <td>DEX</td>
+              <td>A creature's agility</td>
+            </tr>
+            <tr>
+              <td>Constitution</td>
+              <td>CON</td>
+              <td>A creature's robustness</td>
+            </tr>
+            <tr>
+              <td>Willpower</td>
+              <td>WIL</td>
+              <td>A creature's mental fortitude</td>
+            </tr>
+            <tr>
+              <td>Intelligence</td>
+              <td>INT</td>
+              <td>A creature's knowledge</td>
+            </tr>
+            <tr>
+              <td>Charisma</td>
+              <td>CHA</td>
+              <td>A creature's social ability</td>
+            </tr>
+          </table>
+          <h4>Defensive attributes</h4>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Short</td>
+            </tr>
+            <tr>
+              <td>Hit points</td>
+              <td>HP</td>
+            </tr>
+            <tr>
+              <td>Energy</td>
+              <td>ENR</td>
+            </tr>
+            <tr>
+              <td>Dodge chance</td>
+              <td>DDG</td>
+            </tr>
+            <tr>
+              <td>Parry chance</td>
+              <td>PRY</td>
+            </tr>
+            <tr>
+              <td>Block chance</td>
+              <td>BLC</td>
+            </tr>
+            <tr>
+              <td>Block potency</td>
+              <td>BLP</td>
+            </tr>
+          </table>
+          <h4>Utility attributes</h4>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Short</td>
+            </tr>
+            <tr>
+              <td>Action points</td>
+              <td>AP</td>
+            </tr>
+            <tr>
+              <td>Movement points</td>
+              <td>MP</td>
+            </tr>
+            <tr>
+              <td>Maximum carry weight</td>
+              <td>MCW</td>
+            </tr>
+          </table>
+          <h4>Attribute calculations</h4>
+          <table>
+            <tr>
+              <td>Attribute</td>
+              <td>Base calculation</td>
+            </tr>
+            <tr>
+              <td>HP</td>
+              <td>Class base HP + Race base HP + CON/2</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>Class base ENR + Race base ENR + INT/2</td>
+            </tr>
+            <tr>
+              <td>DDG</td>
+              <td>(DEX/2) * Body modifier * Shield modifier</td>
+            </tr>
+            <tr>
+              <td>PRY</td>
+              <td><i>Lowest of:</i> (DEX/2)*Weapon modifier <i>or</i> (STR/2)*Weapon Modifier</td>
+            </tr>
+            <tr>
+              <td>MCW</td>
+              <td>(STR + 4) * 3</td>
+            </tr>
+            <tr>
+              <td>BLC</td>
+              <td><i>Lowest of:</i> Shield base BLC + CON/4 <i>or</i> Shield base BLC + DEX/4</td>
+            </tr>
+            <tr>
+              <td>BLP</td>
+              <td>STR + CON</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>Race base MP + DEX/10</td>
+            </tr>
+            <tr>
+              <td>AP</td>
+              <td>3</td>
+            </tr>
+          </table>
+          <h4>Damage modification order</h4>
+          <ol>
+            <li>Base weapon damage value</li>
+            <li>Weapon damage type as extra</li>
+            <li>Weapon damage type conversions</li>
+            <li>Weapon damage value modifiers</li>
+            <li>Attack damage type as extra</li>
+            <li>Attack damage type conversions</li>
+            <li>Attack damage value modifiers</li>
+            <li>Equipment damage type as extra</li>
+            <li>Equipment and skill damage type conversions</li>
+            <li>Equipment and skill damage value modifiers</li>
+            <li>Aura damage type as extra</li>
+            <li>Aura damage type conversions</li>
+            <li>Aura damage value modifiers</li>
+            <li>Environment damage type as extra</li>
+            <li>Environment damage type conversions</li>
+            <li>Environment damage value modifiers</li>
+            <li>Target damage type as extra</li>
+            <li>Target damage type conversions</li>
+            <li>Target damage value modifiers</li>
+          </ol>
+          <h4>Damage modification calculation</h4>
+          <ol>
+            <li>Sum of "#% increased damage" modifiers</li>
+            <li>Product of "#% more damage" modifiers</li>
+          </ol>
+          <h4>Rounding</h4>
+          <p>Always round towards what the value was before modification, so when you reduce a value, round up,
+            otherwise, round down</p>
+          <h4>Attribute modifier</h4>
+          <p>The modifier of an attribute is equal to (Attribute - 10)/2.</p>
+          <h4>Rolls and tests</h4>
+          <p>If you need to roll an attribute, roll a d20, if the result is lower than that attribute, you succeed,
+            otherwise you fail.</p>
+          <p>If you need to test an attribute, however, you instead roll a d20 and add that attribute's modifier to the
+            roll and compare it to the test's difficulty class (DC), rolling lower than the difficulty class results in
+            a fail, otherwise you succeed.</p>
+          <h4>Death</h4>
+          <p>When your HP would be reduced to lower than 0, you reduce it as much as possible and test CON against a DC
+            equal to the damage past 0 you would take. If you fail, you die. If you roll a 1, you fail regardless, if
+            you roll a 20, you succeed regardless and gain 1d4 HP.</p>
+          <h4>Casting spells and overexertion</h4>
+          <p>You may not cast spells with ENR costs greater than your maximum ENR. You may, however, cast spells with
+            ENR costs greater than your current ENR, if you do this, you spend all your remaining ENR and must roll for
+            overexertion.</p>
+          <p>To roll for overexertion, test INT against a DC equal to the ENR you would have to spend past your current
+            ENR. If you fail, you pass out for 2d10 hours. If you roll a 1, you fail regardless, if you roll a 20, you
+            succeed regardless and gain 1d4 ENR.</p>
+          <h4>Rolling damage</h4>
+          <p>The damage is rolled before modifiers are applied.</p>
+          <h4>Minimum attributes</h4>
+          <p>The minimum attributes are the minimum optimal attributes, you may use weapons even if you have at least
+            half the listed attribute, weapons used this way deal half damage and take all your actions to use.</p>
+          <h4>2-handing</h4>
+          <p>Most weapons can be 2-handed. When 2-handing a weapon, your strength is considered to be twice as high for
+            the purpose of determining minimum attributes</p>
+          <h4>Dual wielding</h4>
+          <p>Most weapons can be equipped together with another one, while doing so, you may use either of the weapons
+            to attack, and your PRY multiplier is the lowest of the two weapons.</p>
+          <h4>Unarmed attacks</h4>
+          <p>If you don't have any weapon equipped, you may make an unarmed attack. An unarmed attack has a base damage
+            of 1d4 and a base speed of 1. Unarmed attacks cannot be parried. You have a PRY modifier of 0.5 if you have
+            no weapons equipped.</p>
+          <h4>Range</h4>
+          <p>The range of an attack determines the maximum reliable range. If you target a space further away, roll a
+            d20 for each additional space. If any of the results are 1:s, the attack misses.</p>
+          <h4>Creating spells</h4>
+          <p>In order to create a spell, you need a recipe and the required ingredients, the recipe can have any length
+            and is made with any number of your discovered aspects, the aspects used determines what the spell does.</p>
+          <h4>Spells and effects</h4>
+          <p>A spell consists of a number of effects. When creating a spell, you will instantly learn the first effect.
+            To discover additional effects, you must either research, spending downtime equal to the effect number
+            you're researching*10, or simply discover it through playing. Effects are numbered from the initial effect
+            starting at 0, so the first effect you'd discover would have a value of 1, and thus a cost of 10 hours.
+            There is no material cost to researching.</p>
+          <h4>Aspects and experimenting</h4>
+          <p>Spells are created with aspects. Each aspect has a tier, with 1 being the commonly known ones, and the
+            higher tiers being more and more rare. You all already know all tier 1 aspects, but in order to learn more,
+            you need to experiment or learn from someone else.</p>
+          <p>To experiment, you need 5ml of alchemical compound, it takes 10h total to perform an experiment. An
+            experiment consists of picking 2 already discovered aspects, and combining them to create a third. All
+            combinations of two tier 1 aspects yield a result, but any other combination has a risk to fail, resulting
+            in no new aspect.</p>
+          <h4>Skills</h4>
+          <p>There are two types of skills, attribute skills and class skills. Class skills are unique to your class,
+            you start with one class skill point and you can gain more from major party achievements, class points are
+            specific to your party and are not lost upon death. Class points are used on your class skill tree.</p>
+          <p>Attribute skills are gained from your class and race, as well as through two ways during the campaign. One
+            way is through exploring new major landmarks, these points are not lost upon death, the other way is through
+            character experiences, and these points are lost upon death.</p>
+          <p>Attribute points are used to gain one of three randomly chosen skills, the only exception to this is
+            charisma, for which all points give +1 Charisma.</p>
+          <h4>Threat level</h4>
+          <p>The threat level is a measurement of the danger you're currently in. It is increased by 1 at the end of
+            each turn, or by 3 if there are no enemies on the map. Some enemies have additional ways they can affect the
+            threat level or be affected by it.</p>
+        </article>
+        <article id="combat">
+          <h3 id="combat-hd">Combat</h3>
+          <h4>Initiative</h4>
+          <p>At the start of combat, each player and monster type rolls initiative. To roll initiative, roll a d20 and add your DEX modifier, the one with the highest roll goes first in turn order, followed by the rest in descending order. In case of a tie, the aggressing side goes first, and ties within the same side are decided through the tied players’ choice.</p>
+          <h4>Actions</h4>
+          <p>On your turn, you have 3 action points by default, you may use these action points as well as your movement points in any order. Each action you take uses action points equal to that action's speed. Many sources of additional action points require you to use them for specific types of actions.</p>
+          <h4>Default Actions</h4>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Speed</td>
+              <td>Effect</td>
+            </tr>
+            <tr>
+              <td>Run</td>
+              <td>All your available actions</td>
+              <td>Double your movement points for the turn.</td>
+            </tr>
+            <tr>
+              <td>Cast spell</td>
+              <td>x</td>
+              <td>Cast a spell, the speed depends on the spell. Requires a catalyst to cast a spell.</td>
+            </tr>
+            <tr>
+              <td>Drink potion</td>
+              <td>1</td>
+              <td>Consume a potion and receive its effect.</td>
+            </tr>
+            <tr>
+              <td>Mediate</td>
+              <td>1</td>
+              <td>Recover 2 ENR.</td>
+            </tr>
+            <tr>
+              <td>Interact</td>
+              <td>x</td>
+              <td>Interact with the environment, the speed depends on what it is you’re trying to do.</td>
+            </tr>
+          </table>
+          <h4>Attacks</h4>
+          <ol>
+            <li>Pick weapon</li>
+            <li>Pick attack</li>
+            <li>Pick target(s)</li>
+            <li>targets roll dodge</li>
+            <li>Hit targets roll block/parry</li>
+            <li>Roll damage</li>
+          </ol>
+          <h4>Attack spells</h4>
+          <ol>
+            <li>Pick catalyst</li>
+            <li>Pick spell</li>
+            <li>Pick target(s)</li>
+            <li>Targets roll dodge</li>
+            <li>Roll damage</li>
+          </ol>
+          <h4>Other spells</h4>
+          <ol>
+            <li>Pick catalyst</li>
+            <li>Pick spell</li>
+            <li>Pick targets</li>
+          </ol>
+          <h4>Dodge</h4>
+          <p>If you dodge an attack, no effects of the attack are applied to you.</p>
+          <h4>Block</h4>
+          <p>If you block an attack, the physical damage is multiplied by 1 minus your block potency, but never less than 0.1, but other effects are applied to you.</p>
+          <h4>Parry</h4>
+          <p>If you parry an attack, no damage from the attack is applied to you, but other effects are.</p>
+        </article>
+        <article id="keywords">
+          <h3 id="keywords-hd">Keywords</h3>
+          <h4>Attack properties</h4>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Effect</td>
+            </tr>
+            <tr>
+              <td><i>All status effect effects</i></td>
+              <td>Applies the respective status effects.</td>
+            </tr>
+            <tr>
+              <td>Block x</td>
+              <td>You may use this weapon to block as if it was a shield with base block chance x.</td>
+            </tr>
+            <tr>
+              <td>Break x</td>
+              <td>Attacks with this weapon have an x% chance to destroy non-magical armour worn by the defender.</td>
+            </tr>
+            <tr>
+              <td>Charge</td>
+              <td>This weapon deals additional damage equal to the amount of spaces you have moved this turn.</td>
+            </tr>
+            <tr>
+              <td>Consecrate</td>
+              <td>Whenever you kill an enemy with this weapon, create consecrated ground where that enemy was.</td>
+            </tr>
+            <tr>
+              <td>Counterattack</td>
+              <td>You may not use this attack normally. Insted, whenever you x an attack, you may make this attack
+                against your attacker for free.</td>
+            </tr>
+            <tr>
+              <td>Dangerous</td>
+              <td>This attack must also target allies.</td>
+            </tr>
+            <tr>
+              <td>Drain x/y</td>
+              <td>For y turns, the target loses x life and you gain 25% of the amount of life lost this way.</td>
+            </tr>
+            <tr>
+              <td>Execute</td>
+              <td>If the target has less than half of its HP remaining, it kills the target instantly on a critical hit.
+              </td>
+            </tr>
+            <tr>
+              <td>Lash x</td>
+              <td>Deals additional damage equals to your excess DEX, up to a maximum of x.</td>
+            </tr>
+            <tr>
+              <td>Loaded x</td>
+              <td>Must be loaded with a speed of x before being shot.</td>
+            </tr>
+            <tr>
+              <td>Lucky</td>
+              <td>Lucky rolls are rolled twice, of which only the best is resolved.</td>
+            </tr>
+            <tr>
+              <td>Purge</td>
+              <td>Can remove any ailment from physical or corrupted sources.</td>
+            </tr>
+            <tr>
+              <td>Reap x</td>
+              <td>You recover x HP for each enemy you kill with this weapon.</td>
+            </tr>
+            <tr>
+              <td>Throwable</td>
+              <td>May be used to make a ranged attack using the range within parentheses.</td>
+            </tr>
+            <tr>
+              <td>Unlucky</td>
+              <td>Unlucky rolls are rolled twice, of which only the worst is resolved.</td>
+            </tr>
+            <tr>
+              <td>Variable draw weight x-y</td>
+              <td>This item can have variable draw weights, from x to y. Replace all instances of “x” on this item with
+                this value.</td>
+            </tr>
+          </table>
+          <h4>Enemy Keywords</h4>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Effect</td>
+            </tr>
+            <tr>
+              <td>Armour x/y/z</td>
+              <td>This target has x piercing physical damage reduction, y slashing physical damage reduction, and z
+                blunt physical damage reduction.</td>
+            </tr>
+            <tr>
+              <td>Minion</td>
+              <td>This enemy dies instantly on reaching 0 HP.</td>
+            </tr>
+            <tr>
+              <td>Mob x</td>
+              <td>Attacks deal +1d4 damage per ally with Mob that can attack the target, up to a maximum of x.</td>
+            </tr>
+            <tr>
+              <td>Undead</td>
+              <td>Undead creatures take damage from healing effects at 100% of their value instead of health.</td>
+            </tr>
+          </table>
+          <h4>Ground effects</h4>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Effect</td>
+            </tr>
+            <tr>
+              <td>Consecrated Ground</td>
+              <td>Light creatures deal 25% more damage whilst standing on consecrated ground.</td>
+            </tr>
+            <tr>
+              <td>Scorched Earth x</td>
+              <td>Creatures standing on Scorched Earth take x fire damage at the start of the round.</td>
+            </tr>
+            <tr>
+              <td>Unhallowed Ground</td>
+              <td>Dark creatures deal 25% more damage whilst standing on unhallowed ground.</td>
+            </tr>
+          </table>
+          <h4>Status effects</h4>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Effect</td>
+            </tr>
+            <tr>
+              <td>Arcane Surge x</td>
+              <td>While you have arcane surge, arcane spells you cast deal 20% more damage and you recover 5 ENR at the
+                start of each of your turns. Lasts for x turns.</td>
+            </tr>
+            <tr>
+              <td>Bane x</td>
+              <td>One suffering from bane deals 25% less damage for x turns.</td>
+            </tr>
+            <tr>
+              <td>Bleeding x/y</td>
+              <td>The one suffering from bleeding takes x physical damage at the start of each turn for y turns.<br>One
+                cannot suffer from multiple instances of bleeding simultaneously.</td>
+            </tr>
+            <tr>
+              <td>Blinded</td>
+              <td>One suffering from blinded cannot attack enemies further away than 3 spaces.</td>
+            </tr>
+            <tr>
+              <td>Burning x/y</td>
+              <td>The one suffering from burning takes x fire damage at the start of each turn for y turns. The burning
+                potency is increased by 1 each turn. Additional instances of burning add their potency to the current
+                instance.</td>
+            </tr>
+            <tr>
+              <td>Controlled x</td>
+              <td>The one who inflicted controlled on the controlled most recently choses what the controlled does.
+                Lasts for x turns.</td>
+            </tr>
+            <tr>
+              <td>Cursed x</td>
+              <td>The one suffering from cursed has an x% chance to die from any damage inflicted on them, this effect
+                stacks but is removed after taking damage.</td>
+            </tr>
+            <tr>
+              <td>Doomed x</td>
+              <td>The one suffering from doomed takes double damage from all magical sources for x turns. This effect
+                doesn't stack.</td>
+            </tr>
+            <tr>
+              <td>Frozen x</td>
+              <td>The one suffering from frozen may not move or take actions for x turns.</td>
+            </tr>
+            <tr>
+              <td>Immobilized</td>
+              <td>The one suffering from immobilized cannot move.</td>
+            </tr>
+            <tr>
+              <td>Marked x</td>
+              <td>Marked targets have a 10*x% chance to take double damage from your attacks.</td>
+            </tr>
+            <tr>
+              <td>Maimed x</td>
+              <td>One suffering from maim takes x times the damage from melee attacks, after which maim has a 50% chance
+                to be removed.</td>
+            </tr>
+            <tr>
+              <td>Petrified</td>
+              <td>The one suffering from petrified may not move or take actions.</td>
+            </tr>
+            <tr>
+              <td>Poisoned x</td>
+              <td>The one suffering from poisoned takes x poison damage at the start of each turn, after which the
+                poison potency is reduced by their CON/4. Additional instances of poison add their potency to the
+                current instance.</td>
+            </tr>
+            <tr>
+              <td>Rage</td>
+              <td>For each rage you have, you have a 1% chance to deal double damage. You can have a maximum of 10 rage
+                at a time. If you end your turn without having attempted to gain rage, you lose 1 rage.</td>
+            </tr>
+            <tr>
+              <td>Scorched x</td>
+              <td>Your maximum HP is reduced by x.</td>
+            </tr>
+            <tr>
+              <td>Slowed x</td>
+              <td>The one suffering from slowed has 50% less MP per turn for x turns.</td>
+            </tr>
+            <tr>
+              <td>Stunned x</td>
+              <td>The one suffering from stunned may not move or take actions. Also, all non-status effect rolls made
+                whilst being stunned are unlucky. At the start of their turn, they must succeed on a CON test with
+                difficulty x. If they do, stunned is removed, if they don't, reduce the stun potency by 1d4.<br>One
+                cannot suffer from multiple instances of stun simultaneously.</td>
+              </td>
+            </tr>
+            <tr>
+              <td>Webbed</td>
+              <td>The one suffering from webbed halves their movement speed and all attacks against them are lucky.</td>
+            </tr>
+          </table>
+        </article>
+        <article id="playable-races">
+          <h3 id="playable-races-hd">Playable Races</h3>
+          <h4>Accursed</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td>Scythe</td>
+              <td>2</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>You may use your hands as catalysts, infernal damage from spells cast using your hands is increased by 25%.</p>
+          <h4>Dragonkin</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td>Glaive</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Halberd</td>
+              <td>2</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>You have the ability to breathe flame, giving you:<br>&emsp;Fire Breath: Speed 2, Damage: 2d6, Cone 1, Ignite 1d4/2
+          </p>
+          <h4>Dwarf</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td>Warhammer</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>War Pick</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Battleaxe</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Greataxe</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>The effect of poison inflicted on you is reduced twice as fast.</p>
+          <h4>Elf</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td>Longbow</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Recurve Bow</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Short Bow</td>
+              <td>2</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>Your ranged attacks against enemies who can't see you are lucky.</p>
+          <h4>Gnome</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>You can perform experiments 15% faster.</p>
+          <h4>Goblin</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td>Dagger</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Knife</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Machete</td>
+              <td>2</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>Your melee attacks against enemies who can't see you are lucky.</p>
+          <h4>Halfling</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>2</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td><i>All weapons with themselves as ammunition</i></td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td><i>All throwable weapons</i></td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>Your death and overexertion rolls are lucky.</p>
+          <h4>Half-Elf</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td>Arming Sword</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Short Sword</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Spear</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Hatchet</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Light Hammer</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>All your attacks with melee weapons against enemies not adjacent to you are lucky.</p>
+          <h4>Half-Orc</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td>Bludgeon</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Flail</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Greatclub</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Morningstar</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Warhammer</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Club</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Light Hammer</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>Critical strikes you deal inflict 25% more damage.</p>
+          <h4>Human</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td><i>All weapons</i></td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h4>Lizardfolk</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h5>Weapon skill points</h5>
+          <table>
+            <tr>
+              <td>Spear</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Javelin</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>Your MP is doubled whilst at least 50% submerged water.<br>You can breathe underwater.</p>
+          <h4>Maak</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>Your claws can be used as weapons, giving you:<br>&emsp;Claws: Damage 4, Speed 1, Reach 1, Bleed 4/1d4</p>
+          <h4>Sunborn</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>MP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <h5>Additional bonuses</h5>
+          <p>When an ally within Aura 3 is recovering HP, they recover 20% more HP.</p>
+        </article>
+        <article id="classes">
+          <h3 id="classes-hd">Classes</h3>
+          <p>All classes gain 1 class point in addition to class specific traits.</p>
+          <h4>Druid</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td0></td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h4>Duelist</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>11</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h4>Maruader</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>13</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h4>Ranger</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h4>Warlock</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+          <h4>Wizard</h4>
+          <h5>Base attributes and skill points</h5>
+          <table>
+            <tr>
+              <td>HP</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>ENR</td>
+              <td>13</td>
+            </tr>
+            <tr>
+              <td>STR</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>DEX</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>CON</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>WIL</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>INT</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>CHA</td>
+              <td>0</td>
+            </tr>
+          </table>
+        </article>
+      </section>
+      <section id="world">
+        <h2 id="world-hd">World</h2>
+      </section>
+      <section id="sheets">
+        <h2 id="sheets-hd">Sheets</h2>
+      </section>
+    </main>
+  </div>
+  <img id="desktop-bg" src="img/desktop-bg-lq.jpg" />
+</body>
+
+</html>

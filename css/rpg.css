@@ -1,0 +1,23 @@
+article:not(#playable-races, #classes) > table tr:first-child > td {
+  font-weight: bold;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+table, td {
+  border: 1px solid #000000;
+}
+
+table {
+  margin: 5px;
+}
+
+td {
+  padding: 2px;
+}
+
+section > h2, article > h3 {
+  user-select: none;
+}
