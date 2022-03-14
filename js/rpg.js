@@ -1,48 +1,34 @@
-window.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('section').forEach((current) => {
-    document.querySelectorAll('section > h2').forEach((currentHeader) => {
+window.addEventListener('DOMContentLoaded', async () => {
+  document.querySelectorAll('section, article').forEach((current) => {
+    document.querySelectorAll('.fold-button').forEach((currentHeader) => {
       if (currentHeader.id == current.id+'-hd') {
         currentHeader.addEventListener('click', () => {
           current.childNodes.forEach((currentNode) => {
             if (currentHeader.id == currentNode.id) {
+              currentNode.childNodes.forEach((currentChild) => {
+                if (currentChild.classList && currentChild.classList.contains('fold-icon')) {
+                  currentChild.classList.toggle('fold-icon-unfolded');
+                }
+              });
               return;
             }
-            if (!currentNode.hidden) {
-              currentNode.hidden = true;
-            }
-            else {
-              currentNode.hidden = false;
+            if (currentNode.classList) {
+              currentNode.classList.toggle('hidden');
             }
           });
         });
       }
     });
   });
-  document.querySelectorAll('section > article').forEach((current) => {
-    document.querySelectorAll('section > article > h3').forEach((currentHeader) => {
-      if (currentHeader.id == current.id+'-hd') {
-        currentHeader.addEventListener('click', () => {
-          current.childNodes.forEach((currentNode) => {
-            if (currentHeader.id == currentNode.id) {
-              return;
-            }
-            if (!currentNode.hidden) {
-              currentNode.hidden = true;
-            }
-            else {
-              currentNode.hidden = false;
-            }
-          });
-        });
-      }
-    });
+  document.querySelectorAll('section > article, section > article > *:not(.fold-button)').forEach((current) => {
+    current.classList.add('hidden');
   });
-  document.querySelectorAll('section > article, section > article > *:not(h3)').forEach((current) => {
-    current.hidden = true;
-  })
+  document.querySelectorAll('.fold-button > img').forEach((current) => {
+    current.classList.add('fold-icon');
+  });
 });
 
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
   document.querySelectorAll('section').forEach((current) => {
     current.hidden = false;
   });
