@@ -46,6 +46,7 @@ nav > div {
   font-family: 'Exo', sans-serif;
   font-size: 2rem;
   text-align: center;
+  user-select: none;
   cursor: pointer;
 }
 
