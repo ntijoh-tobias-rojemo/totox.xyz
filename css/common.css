@@ -39,6 +39,7 @@ li {
 nav {
   display: flex;
   flex-direction: row;
+  background-color: #000;
 }
 
 nav > div {
@@ -48,6 +49,8 @@ nav > div {
   text-align: center;
   user-select: none;
   cursor: pointer;
+  color:rgb(179, 1, 182);
+  font-weight: bold;
 }
 
 body {
