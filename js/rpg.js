@@ -1,3 +1,5 @@
+const isTall = window.matchMedia("only screen and (min-height: 500px)");
+
 window.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('section, article').forEach(async (current) => {
     document.querySelectorAll('.fold-button').forEach(async (currentHeader) => {
@@ -20,12 +22,19 @@ window.addEventListener('DOMContentLoaded', async () => {
       }
     });
   });
-  document.querySelectorAll('section > article, section > article > *:not(.fold-button)').forEach(async (current) => {
+  document.querySelectorAll('section > article').forEach(async (current) => {
+    if (!isTall.matches) {
+      current.classList.add('hidden');
+    }
+  });
+  document.querySelectorAll('section > article > *:not(.fold-button)').forEach(async (current) => {
     current.classList.add('hidden');
   });
-  document.querySelectorAll('.fold-button > img').forEach(async (current) => {
-    current.classList.add('fold-icon');
-  });
+  if (isTall.matches) {
+    document.querySelectorAll('section > .fold-button > .fold-icon').forEach(async (current) => {
+      current.classList.add('fold-icon-unfolded');
+    });
+  }
 });
 
 window.addEventListener('load', async () => {
