@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
-  <meta property="og:title" content="Home">
+  <meta property="og:title" content="Bot">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://totox.xyz/img/embed.png">
   <meta property="og:url" content="https://bot.totox.xyz">
@@ -9,6 +9,7 @@
   <meta property="og:site_name" content="totox.xyz">
 
   <script src="js/common.js" type="module"></script>
+  <script src="js/bot.js" type="module"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@700&family=Exo:wght@300&display=swap" rel="stylesheet">
@@ -27,6 +28,37 @@
       <div>Contact</div>
     </nav>
     <main>
+      <h1>TotoxBot</h1>
+      <section id="guide">
+        <h2>How to use</h2>
+        <article id="add">
+          <h3>Adding the bot</h3>
+          <p>To add the bot to your discord server, simply <a href="https://bot.totox.xyz" target="_blank">invite it</a>, and then send "!setup" in any channel you want the bot in.</p>
+          <p>To add it to your twitch channel, go to <a href="https://twitch.tv/totoxbot" target="_blank">the bot's channel</a> and send "!invite".</p>
+        </article>
+        <article id="config">
+          <h3>Configuring the bot</h3>
+          <p>Note: For discord, each channel is considered separate for most purposes.</p>
+          <p>Each channel the bot is active in has a couple default commands enabled</p>
+        </article>
+      </section>
+      <section id="commands">
+        <h2>Commands</h2>
+        <div id="table-hover-wrapper">
+          <table id="command-table">
+            <tr>
+              <td>Name</td>
+              <td>Required permissions</td>
+              <td>Usage</td>
+              <td>Description</td>
+            </tr>
+          </table>            
+        </div>
+        <div class="hidden" id="command-tooltip">
+          <h3 id="tooltip-title"></h3>
+          <p id="tooltip-desc">Mouse over a command to see a detailed description.</p>
+        </div>
+      </section>
     </main>
   </div>
   <img id="desktop-bg" src="//:0" />

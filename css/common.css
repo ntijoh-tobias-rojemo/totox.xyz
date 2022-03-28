@@ -108,7 +108,7 @@ article > .fold-button {
   transform: rotate(-90deg);
 }
 
-.hidden {
+.hidden:not(#command-tooltip) {
   display: none;
 }
 
@@ -173,6 +173,17 @@ section#links > article > * > * {
 section#links > article > * img {
   width: 100%;
   height: 100%;
+}
+
+#command-tooltip {
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
+.hidden#command-tooltip {
+  opacity: 0;
 }
 
 @media only screen and (min-aspect-ratio:6/5) {
