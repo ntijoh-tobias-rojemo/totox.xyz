@@ -181,7 +181,7 @@ section#links > article > * img {
 }
 
 #command-tooltip {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   position: absolute;
   transition: opacity 0.3s;
   opacity: 0;
