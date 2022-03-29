@@ -5,8 +5,11 @@ const isDesktop = window.matchMedia("only screen and (min-aspect-ratio:6/5)");
 var navHidden = true;
 
 window.addEventListener('DOMContentLoaded', async () => {
-  document.querySelectorAll('nav > div').forEach(async (current, i) => {
-    current.addEventListener('click', () => {nav(i)})
+  document.querySelectorAll('nav > div').forEach(async (current, pageID) => {
+    current.addEventListener('click', () => {
+      history.pushState({pageID: pageID}, '', `${pages[pageID]}.html`);
+      location.reload();
+    });
   });
   if (isDesktop.matches) {
     const background = document.getElementById('desktop-bg');
@@ -40,9 +43,4 @@ async function updateBG() {
       background.src = 'img/desktop-bg.jpg';
     }
   }
-}
-
-async function nav(pageID) {
-  history.pushState({pageID: pageID}, '', `${pages[pageID]}.html`);
-  location.reload();
 }
