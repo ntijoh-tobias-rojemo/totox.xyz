@@ -1,7 +1,5 @@
 import {commands} from '../data/commands.js';
 
-var isHovering = false;
-
 window.addEventListener('DOMContentLoaded', async () => {
   const tooltip = document.getElementById('command-tooltip');
   const tooltipTitle = document.getElementById('tooltip-title');
@@ -26,41 +24,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     newRow.addEventListener('mouseover', async () => {
       tooltipTitle.innerHTML = currentCommand.name;
       tooltipDesc.innerHTML = currentCommand.desc;
-      tooltip.classList.remove('hidden');
-    });
-
-    newRow.addEventListener('mouseleave', async () => {
-      setTimeout(() => {
-        if (!isHovering) {
-          tooltip.classList.add('hidden');
-        }
-      }, 500);
-    });
-
-    newRow.childNodes.forEach((currentChild) => {
-      currentChild.addEventListener('mouseover', async () => {
-        tooltipTitle.innerHTML = currentCommand.name;
-        tooltipDesc.innerHTML = currentCommand.desc;
-        tooltip.classList.remove('hidden');
-      });
-
-      currentChild.addEventListener('mouseover', async () => {
-        isHovering = true;
-      });
     });
   });
 
   document.addEventListener('mousemove', (event) => {
     tooltip.style.left = `${event.pageX}px`;
     tooltip.style.bottom = `${innerHeight - event.pageY}px`;
-  });
-
-  hoverWrapper.addEventListener('mouseover', async () => {
-    isHovering = true;
-  });
-
-  hoverWrapper.addEventListener('mouseleave', async () => {
-    isHovering = false;
   });
 });
 

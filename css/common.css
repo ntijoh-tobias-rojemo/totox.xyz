@@ -179,11 +179,11 @@ section#links > article > * img {
   background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
   transition: opacity 0.3s;
-  opacity: 1;
+  opacity: 0;
 }
 
-.hidden#command-tooltip {
-  opacity: 0;
+#table-hover-wrapper:hover > #command-tooltip {
+  opacity: 1;
 }
 
 @media only screen and (min-aspect-ratio: 6/5) {
