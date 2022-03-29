@@ -193,7 +193,7 @@ section#links > article > * img {
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 30rem) {
   nav {
     width: 10rem;
     border-bottom-left-radius: 5px;

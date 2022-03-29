@@ -12,22 +12,20 @@ window.addEventListener('DOMContentLoaded', async () => {
     const background = document.getElementById('desktop-bg');
     background.src = 'img/desktop-bg-lq.jpg';
   }
-  else {
-    const nav = document.querySelector('nav');
-    const navButton = document.getElementById('nav-button')
-    navButton.addEventListener('click', () => {
-      if (navHidden) {
-        nav.style.right = '0px';
-        navButton.style.right = '10rem';
-        navHidden = false;
-      }
-      else {
-        nav.style.right = '-10rem';
-        navButton.style.right = '0px';
-        navHidden = true;
-      }
-    });
-  }
+  const nav = document.querySelector('nav');
+  const navButton = document.getElementById('nav-button')
+  navButton.addEventListener('click', () => {
+    if (navHidden) {
+      nav.style.right = '0px';
+      navButton.style.right = '10rem';
+      navHidden = false;
+    }
+    else {
+      nav.style.right = '-10rem';
+      navButton.style.right = '0px';
+      navHidden = true;
+    }
+  });
 });
 
 window.addEventListener('load', updateBG);
