@@ -73,6 +73,10 @@ nav > div {
   font-weight: bold;
 }
 
+nav > div:hover {
+  color: #FF40E180;
+}
+
 body {
   height: 100vh;
   width: 100vw;
