@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   const tooltipDesc = document.getElementById('tooltip-desc');
   const table = document.getElementById('command-table');
   const hoverWrapper = document.getElementById('table-hover-wrapper');
+
   commands.forEach((currentCommand) => {
     const newRow = document.createElement('tr');
     const newName = document.createElement('td');
@@ -25,6 +26,10 @@ window.addEventListener('DOMContentLoaded', async () => {
       tooltipTitle.innerHTML = currentCommand.name;
       tooltipDesc.innerHTML = currentCommand.desc;
     });
+  });
+
+  hoverWrapper.addEventListener('mouseover', () => {
+    tooltip.hidden = false;
   });
 
   document.addEventListener('mousemove', (event) => {
