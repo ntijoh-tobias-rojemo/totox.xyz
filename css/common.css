@@ -58,6 +58,10 @@ nav {
   background-color: #000;
 }
 
+#nav-button {
+  display: none;
+}
+
 nav > div {
   flex: 1;
   font-family: 'Exo', sans-serif;
@@ -128,14 +132,13 @@ article > .fold-button {
   width: 100vw;
   height: 100vh;
   top: 0px;
-  left: 0px;  
+  left: 0px;
   z-index: -2;
 }
 
 main {
   height: 100%;
   width: 100%;
-  z-index: 1;
 }
 
 section#links {
@@ -143,14 +146,12 @@ section#links {
   height: 100%;
   display: flex;
   flex-direction: column;
-  z-index: 2;
 }
 
 section#links > article {
   flex: 1;
   width: 100%;
   display: flex;
-  z-index: 3;
 }
 
 section#links > article:nth-child(even) {
@@ -163,11 +164,6 @@ section#links > article:nth-child(odd) {
 
 section#links > article > * {
   flex: 1;
-  z-index: 4;
-}
-
-section#links > article > * > * {
-  z-index: 5;
 }
 
 section#links > article > * img {
@@ -186,7 +182,7 @@ section#links > article > * img {
   opacity: 0;
 }
 
-@media only screen and (min-aspect-ratio:6/5) {
+@media only screen and (min-aspect-ratio: 6/5) {
   .desktop-page-wrapper {
     width: 100vh;
     background-color: rgba(255, 0, 225, 0.7);
@@ -194,5 +190,31 @@ section#links > article > * img {
 
   #desktop-bg {
     display: block;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  nav {
+    width: 10rem;
+    border-bottom-left-radius: 5px;
+    right: -10rem;
+    top: 0px;
+    position: fixed;
+    flex-direction: column;
+  }
+  #nav-button {
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    position: fixed;
+    border-bottom-left-radius: 3px;
+    top: 0px;
+    right: 0px;
+    background-color: #000000;
+  }
+  #nav-button > img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
   }
 }
