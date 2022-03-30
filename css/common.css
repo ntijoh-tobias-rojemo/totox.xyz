@@ -183,12 +183,6 @@ section#links > article > * img {
 #command-tooltip {
   background-color: rgba(255, 255, 255, 0.8);
   position: absolute;
-  transition: opacity 0.3s;
-  opacity: 0;
-}
-
-#table-hover-wrapper:hover > #command-tooltip {
-  opacity: 1;
 }
 
 @media only screen and (min-aspect-ratio: 6/5) {

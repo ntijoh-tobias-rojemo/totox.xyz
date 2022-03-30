@@ -32,6 +32,10 @@ window.addEventListener('DOMContentLoaded', async () => {
     tooltip.hidden = false;
   });
 
+  hoverWrapper.addEventListener('mouseleave', () => {
+    tooltip.hidden = true;
+  });
+
   document.addEventListener('mousemove', (event) => {
     tooltip.style.left = `${event.pageX}px`;
     tooltip.style.bottom = `${innerHeight - event.pageY}px`;
