@@ -208,6 +208,8 @@ section.links > article > * img {
     top: 0px;
     position: fixed;
     flex-direction: column;
+    transition: right 0.3s;
+    z-index: 10;
   }
   #nav-button {
     width: 3rem;
@@ -218,6 +220,8 @@ section.links > article > * img {
     top: 0px;
     right: 0px;
     background-color: #000000;
+    z-index: 10;
+    transition: right 0.3s;
   }
   #nav-button > img {
     width: 100%;
