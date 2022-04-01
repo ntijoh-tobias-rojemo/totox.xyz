@@ -19,13 +19,19 @@ window.addEventListener('DOMContentLoaded', async () => {
   const navButton = document.getElementById('nav-button')
   navButton.addEventListener('click', () => {
     if (navHidden) {
-      nav.style.right = '0px';
-      navButton.style.right = '10rem';
+      nav.style.left = 'calc(100vw - 10rem)';
+      navButton.style.left = 'calc(100vw - 13rem)';
+      nav.style.visibility = 'visible';
       navHidden = false;
     }
     else {
-      nav.style.right = '-10rem';
-      navButton.style.right = '0px';
+      nav.style.left = '100vw';
+      navButton.style.left = 'calc(100vw - 3rem)';
+      setTimeout(() => {
+        if (navHidden) {
+          nav.style.visibility = 'hidden';
+        }
+      }, 300);
       navHidden = true;
     }
   });
@@ -39,8 +45,8 @@ async function updateBG() {
   if (isDesktop.matches) {
     let img = new Image();
     img.src = 'img/desktop-bg.jpg';
-    img.onload = () => {
+    img.addEventListener('load', () => {
       background.src = 'img/desktop-bg.jpg';
-    }
+    });
   }
 }
