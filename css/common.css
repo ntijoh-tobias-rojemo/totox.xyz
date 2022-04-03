@@ -191,7 +191,7 @@ section.links > article > * img {
 
 #chess-popup {
   position: fixed;
-  padding-left: 20vw;
+  padding-left: 50vh;
   bottom: 2rem;
   transform: rotate(-10deg);
   opacity: 0;
