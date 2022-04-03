@@ -9,6 +9,7 @@
   <meta property="og:site_name" content="totox.xyz">
   
   <script src="js/common.js" type="module"></script>
+  <script src="js/contact.js" type="module"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@700&family=Exo:wght@300&display=swap" rel="stylesheet">
@@ -36,6 +37,17 @@
       <p>For other messages, feel free to contact me in discord at <a href="https://discordapp.com/users/458684324653301770" target="_blank">Toto00#0614</a> or, if it's not private, in <a href="https://discord.gg/YBSScazBXv" target="_blank">my server</a> or <a href="https://twitch.tv/totox00" target="_blank">my stream</a>.</p>
     </main>
   </div>
+  <div id="chess-popup">
+    <p>This page is boring, you should look at me instead</p>
+  </div>
+  <aside id="chess-tray">
+    <div id="chess-fold-button">
+      <div id="chess-fold-icon-wrapper">
+        <img id="chess-fold-icon" src="img/chess-fold-icon.svg" alt="Fold icon">
+      </div>
+    </div>
+    <iframe sandbox="allow-scripts allow-same-origin" id="chess-game" allowtransparency="true" scrolling="no" src="./Chess/index.html"></iframe>
+  </aside>
   <img id="desktop-bg" src="//:0" alt="" />
 </body>
 </html>
