@@ -26,6 +26,18 @@ h4, h5, p, li, td {
   font-size: 1rem;
 }
 
+section#rules h2, section#rules h3 {
+  text-shadow: 2px 2px cyan;
+}
+
+section#world h2, section#world h3 {
+  text-shadow: 2px 2px lime;
+}
+
+section#sheets h2, section#sheets h3 {
+  text-shadow: 2px 2px red;
+}
+
 p, li, td {
   font-family: 'Exo', sans-serif;
   padding-left: 0.4rem;
@@ -55,10 +67,6 @@ tr:nth-child(2n) > td {
 
 tr:nth-child(2n + 1) > td {
   background-color: rgb(242, 65, 215);
-}
-
-section#rules h2, section#rules h3 {
-  color: ;
 }
 
 table {
