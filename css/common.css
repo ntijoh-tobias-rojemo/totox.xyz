@@ -31,6 +31,10 @@ p, li, td {
   padding-left: 0.4rem;
 }
 
+p + p {
+  padding-top: 1rem;
+}
+
 li {
   position: relative;
   left: 2rem;
@@ -51,6 +55,10 @@ tr:nth-child(2n) > td {
 
 tr:nth-child(2n + 1) > td {
   background-color: rgb(242, 65, 215);
+}
+
+section#rules h2, section#rules h3 {
+  color: ;
 }
 
 table {
