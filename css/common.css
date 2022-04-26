@@ -42,6 +42,15 @@ article:not(#playable-races, #classes) > table tr:first-child > td, #commands > 
 
 table, td {
   border: 1px solid #000000;
+  background-color: rgb(242, 21, 209);
+}
+
+tr:nth-child(2n) > td {
+  background-color: rgb(244, 97, 222);
+}
+
+tr:nth-child(2n + 1) > td {
+  background-color: rgb(242, 65, 215);
 }
 
 table {
@@ -102,8 +111,8 @@ article > .fold-button {
 .fold-icon {
   position: absolute;
   right: 2.5%;
-  top: 0px;
-  height: 100%;
+  top: 25%;
+  height: 50%;
   transition: transform 1s;
 }
 
