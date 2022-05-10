@@ -22,7 +22,10 @@ window.addEventListener('DOMContentLoaded', async () => {
       }
     });
   });
-  document.querySelectorAll('section > article').forEach(async (current) => {
+  document.querySelectorAll('section:not(#rules) > article').forEach(async (current) => {
+    current.classList.add('hidden');
+  });
+  document.querySelectorAll('section#rules > article').forEach(async (current) => {
     if (!isTall.matches) {
       current.classList.add('hidden');
     }
@@ -31,7 +34,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     current.classList.add('hidden');
   });
   if (isTall.matches) {
-    document.querySelectorAll('section > .fold-button > .fold-icon').forEach(async (current) => {
+    document.querySelectorAll('section#rules > .fold-button > .fold-icon').forEach(async (current) => {
       current.classList.add('fold-icon-unfolded');
     });
   }

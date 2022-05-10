@@ -11,31 +11,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 4.2rem;
+  font-size: 2.4rem;
 }
 
 h2 {
-  font-size: 2.6rem;
+  font-size: 1.8rem;
 }
 
 h3, .links h2 {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
 }
 
 h4, h5, p, li, td {
   font-size: 1rem;
 }
 
-section#rules h2, section#rules h3 {
-  text-shadow: 2px 2px cyan;
+section#rules h2 {
+  text-shadow: 2.1px 2.1px cyan;
 }
 
-section#world h2, section#world h3 {
-  text-shadow: 2px 2px lime;
+section#world h2 {
+  text-shadow: 2.1px 2.1px lime;
 }
 
-section#sheets h2, section#sheets h3 {
-  text-shadow: 2px 2px red;
+section#sheets h2 {
+  text-shadow: 2.1px 2.1px red;
+}
+
+section#rules h3 {
+  text-shadow: 1.3px 1.3px cyan;
+}
+
+section#world h3 {
+  text-shadow: 1.3px 1.3px lime;
+}
+
+section#sheets h3 {
+  text-shadow: 1.3px 1.3px red;
 }
 
 p, li, td {
@@ -66,7 +78,7 @@ tr:nth-child(2n) > td {
 }
 
 tr:nth-child(2n + 1) > td {
-  background-color: rgb(242, 65, 215);
+  background-color: rgb(245, 133, 228);
 }
 
 table {
@@ -216,8 +228,8 @@ section.links > article > * img {
 
 #chess-popup {
   position: fixed;
-  padding-left: 50vh;
-  bottom: 2rem;
+  padding-left: 10%;
+  bottom: 10%;
   transform: rotate(-10deg);
   opacity: 0;
   transition: opacity 0.4s;

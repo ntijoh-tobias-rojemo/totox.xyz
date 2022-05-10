@@ -46,7 +46,7 @@ const commands = [
     "perms": "6",
     "usage": "6",
     "short": "6",
-    "desc": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, numquam deserunt. Iste, architecto asperiores consequuntur neque ad, quis corporis hic soluta odit saepe temporibus maiores inventore illo reiciendis voluptas explicabo molestiae, maxime ipsam id. A quo neque labore et obcaecati perspiciatis magni id molestiae, asperiores voluptas, expedita nostrum nulla, possimus nihil?<br> Impedit nemo incidunt doloribus error molestias voluptates voluptate eveniet vel ratione laudantium!<br> Natus excepturi mollitia possimus iusto inventore voluptatum, quod ea animi similique nam deleniti odio officia corporis dolores unde. Facilis ea consequatur labore, autem necessitatibus quia nemo enim ex, fuga reiciendis molestias omnis sapiente deleniti aut consequuntur harum."
+    "desc": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, numquam deserunt.<br/><br/>Iste, architecto asperiores consequuntur neque ad, quis corporis hic soluta odit saepe temporibus maiores inventore illo reiciendis voluptas explicabo molestiae, maxime ipsam id.<br/><br/>A quo neque labore et obcaecati perspiciatis magni id molestiae, asperiores voluptas, expedita nostrum nulla, possimus nihil?<br/><br/> Impedit nemo incidunt doloribus error molestias voluptates voluptate eveniet vel ratione laudantium!"
   }
 ];
 
