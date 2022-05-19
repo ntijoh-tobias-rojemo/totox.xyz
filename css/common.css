@@ -25,7 +25,7 @@ h3, .links h2 {
 h4, h5, p, li, td {
   font-size: 1rem;
 }
-
+/*
 section#rules h2 {
   text-shadow: 2.1px 2.1px cyan;
 }
@@ -49,7 +49,7 @@ section#world h3 {
 section#sheets h3 {
   text-shadow: 1.3px 1.3px red;
 }
-
+*/
 p, li, td {
   font-family: 'Exo', sans-serif;
   padding-left: 0.4rem;
